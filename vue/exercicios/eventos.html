@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Eventos</title>
+    <link rel="stylesheet" href="/css/estilo.css">
+    <script src="/js/vue.min.js"></script>
+</head>
+<body class="exercicio">
+
+    <div id="app">
+        <p>{{contador}}</p>
+        <p>
+            <button v-on:click="add">+2</button>
+            <button v-on:click="remove">-3</button>
+            <button @click="contador *= 5">*5</button>
+        </p>
+        <p @mousemove="atualizarPosicao">
+            Coordenadas : {{x}} e {{y}}
+            <span @mousemove="stop">Aqui não funciona</span> 
+        </p>
+        <input type="text" @keyup.enter="alerta">
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app", 
+            data: {
+                x: 0,
+                y: 0,
+                contador: 0
+            }, 
+            methods: { 
+                add() {
+                    this.contador +=2
+                }, remove() { 
+                    this.contador -=3
+                }, 
+                atualizarPosicao(e) { 
+                    this.x = e.clientX
+                    this.y = e.clientY
+                }, 
+                stop(e) { 
+                    e.stopPropagation()
+                }, 
+                alerta() { 
+                    alert('Enter!')
+                }
+
+            }
+        })
+    </script>
+</body>
+</html>
