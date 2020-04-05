@@ -9,9 +9,33 @@
 </head>
 
 <body>
+<div id="app">
+    <div class="container">
+        <h1 class="mt-3">{{title}}</h1>
 
+        <table class="mt-5 table">
+            <thead></thead>
+        </table>
+    </div>
+</div>
     <script>
-        // ...
+        new Vue({
+            el: '#app',
+            data: {
+                title: 'Relatorio de Vendas', 
+                sales: null
+            },
+            methods: {
+                getSales() { 
+                    fetch('/data/sales.json')
+                        .then(resp => resp.json())
+                        .then(data => this.sales = data)
+                }
+            }, 
+            mounted() { //Roda antes de tudo
+                 this.getSales()
+            }
+        })
     </script>
 </body>
 
