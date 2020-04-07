@@ -1,0 +1,120 @@
+code<!DOCTYPE html>
+<html lang="pt-BR">
+
+<input type="text" name="nome">
+    <button>Incluir</button>
+
+<form id="corpo"></form>
+    <table border="1">
+    <caption>
+        Produtos
+    </caption>
+    <thead>
+    <tr>
+        <th>Produto</th>
+        <th>Preço</th>
+        <th>Quantidade</th>
+        <th>Total</th>
+    </tr>
+    <tbody>
+        <tr>
+            <td>IPAD</td>
+            <td id="valor1">10</td>
+            <td id= "quant1">10000</td>
+            <td id="total1">2225.00</td>
+        </tr>
+        <tr>
+            <td>Android</td>
+            <td id="valor2">1225.00</td>
+            <td id= "quant2">3</td>
+            <td id="total2">2225.00</td>
+        </tr>
+        <tr>
+            <td>Windows Phone</td>
+            <td id="valor3">2225.00</td>
+            <td id= "quant3">1</td>
+            <td id="total3">2225.00</td>
+        </tr>
+    </tbody> 
+    </tbody> 
+    </thead>
+    <tfoot>
+        <tr>
+            <td colspan="3" rowspan="1">TOTAL</td>
+            <td id=total></td>       	
+            <!-- 
+                COMENTARIO
+                <td colspan="3" rowspan="3">TOTAL</td>
+                <td id=total>1</td>
+            
+            -->
+            
+        </tr>
+        <tr>
+            
+        </tr>
+    </tfoot>
+</table>
+</form>
+<script>
+//Depois incluir Novos produtos
+//Fazer ficar na pagina index
+
+
+//pegar com for
+let tdValor1 = document.querySelector("#valor1")
+let valor1 = tdValor1.textContent * 1
+let tdValor2 = document.querySelector("#valor2")
+let valor2 = tdValor2.textContent * 1
+let tdValor3 = document.querySelector("#valor3")
+let valor3 = tdValor3.textContent * 1
+
+let tdQuant1 = document.querySelector("#quant1")
+let quant1 = tdQuant1.textContent * 1
+let tdQuant2 = document.querySelector("#quant2")
+let quant2 = tdQuant2.textContent * 1 
+let tdQuant3 = document.querySelector("#quant3")
+let quant3 = tdQuant3.textContent * 1
+
+let tdTotal1 = document.querySelector("#total1")
+let total1 = tdTotal1.textContent * 1 
+let tdTotal2 = document.querySelector("#total2")
+let total2 = tdTotal2.textContent * 1 
+let tdTotal3 = document.querySelector("#total3")
+let total3 = tdTotal3.textContent * 1
+//fim de pegar com for
+
+total1 = (valor1 * quant1)
+total2 = (valor2 * quant2)
+total3 = (valor3 * quant3)
+const total = ((total1*1) + (total2*1) + (total3*1)) //Modificar 
+
+document.getElementById("total1").innerHTML = total1.toFixed(2)
+document.getElementById("total2").innerHTML = total2.toFixed(2)
+document.getElementById("total3").innerHTML = total3.toFixed(2)
+document.getElementById("total").innerHTML = total.toFixed(2)
+
+</script>
+
+<style>
+    table {
+        border-collapse: collapse;
+    }
+    
+    th, td {
+        padding: 10px;
+    }
+
+    thead tr {
+        border-bottom: solid 3px #444;
+    }
+
+    tbody tr:hover {
+        background-color: #dedede;
+    }
+    tfoot {
+        background-color: #444;
+        color: #fff;
+        font-weight: bold;
+    }
+</style>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+		<title id='cabeca'>Aparecida Nutrição</title>
+		<link rel="icon" href="favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" type="text/css" href="css/reset.css">
+		<link rel="stylesheet" type="text/css" href="css/index.css">
+
+	</head>
+	<body>
+
+		<header>
+			<div class="container">
+				<h2 id="titulo">Aparecida Nutrição</h2>
+			</div>
+		</header>
+		<main>
+			<section class="container">
+				<h2 id="saida">Meus pacientes</h2>
+				<table>
+					<thead>
+						<tr>
+							<th id="print1">Nome</th>
+							<th id="print2">Peso(kg)</th>
+							<th id="print3">Altura(m)</th>
+							<th id="print4">Gordura Corporal(%)</th>
+							<th id="print5">IMC</th>
+						</tr>
+					</thead>
+					<tbody id="tabela-pacientes">
+						
+					</tbody>
+				</table>
+
+			</section>
+		</main>
+
+		<section class="container">
+		    <h2  id="titulo-read">Adicionar novo paciente</h2>
+			<ul id="mensagens-erro"></ul>
+		    <form id="form-adiciona">
+		        <div class="">
+		            <label for="nome" id="read1">Nome:</label>
+		            <input id="nome" name="nome" type="text" placeholder="X" class="campo">
+		        </div>
+		        <div class="grupo">
+		            <label for="peso" id="read2">Peso:</label>
+		            <input id="peso" name="peso" type="text" placeholder="X" class="campo campo-medio">
+		        </div>
+		        <div class="grupo">
+		            <label for="altura" id="read3">Altura:</label>
+		            <input id="altura" name="altura" type="text" placeholder="X" class="campo campo-medio">
+		        </div>
+		        <div class="grupo">
+		            <label for="gordura" id="read4">% de Gordura:</label>
+		            <input id="gordura" type="text" placeholder="X" class="campo campo-medio">
+		        </div>
+
+		        <button id="adicionar-paciente" class="botao bto-principal">Adicionar</button>
+		    </form>
+		</section>
+
+		<script src="js/calcula-imc.js" ></script>
+		<script src="js/form.js" ></script>
+		<script src="js/remover-paciente.js" ></script>
+
+	</body>
+</html>

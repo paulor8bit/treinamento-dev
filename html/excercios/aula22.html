@@ -1,0 +1,49 @@
+<form id="form-adiciona">
+    <h1 id="q">Aula 22</h1>
+    <h3 id="q">Bolean</h3>
+    <p>Se digitado o valor é true
+    <input type="text" name="valorBoleano"> 
+    <p>Digite seu nome
+    <input type="text" name="nome">
+    <button id=adcionar>Incluir</button>
+</form>
+
+<script>
+
+function adcionalinha (saida) { 
+let elemento_pai = document.body
+let titulo = document.createElement('p')
+let texto  = document.createTextNode(saida)
+titulo.appendChild(texto)
+elemento_pai.appendChild(titulo)
+    
+}
+
+let botaoAdicionar = document.querySelector("#adcionar")
+botaoAdicionar.addEventListener("click", function(event) {
+    event.preventDefault()
+    let form = document.querySelector("#form-adiciona")
+    let nome = form.nome.value
+    let valorBoleano = form.valorBoleano.value
+
+    let saida1= (!!valorBoleano)
+    adcionalinha(saida1)
+    let saida2= (nome || 'Desconhecido') // sem o nome for vazio ou falso, aparece desconhecido
+    adcionalinha(saida2)
+    
+})
+
+
+
+</script>
+
+<style> 
+    input, textarea, select { 
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    input[type=radio], input[type=checkbox] {
+        display: inline
+    }
+    </style>

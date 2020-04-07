@@ -1,0 +1,26 @@
+body { 
+    font-size: 40px; 
+}
+
+
+ul, ol {
+    padding: 0; /* Arrumar para padrão, 
+    esta aplicada para 06 e 07*/ 
+}
+
+li { 
+    margin-left: 60px;
+}
+
+.tag {
+    border: solid 4px;
+    margin: 5px;
+}
+
+.tag label {
+    color: whitesmoke;
+    font-size: 25px;
+    vertical-align: top;
+    margin-right: 10px;
+    padding: 0px 5px 3px 3px;
+}

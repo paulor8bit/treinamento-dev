@@ -1,0 +1,64 @@
+<div wm-slider> 
+    <p >
+    <img  src="http://files.cod3r.com.br/curso-web/imagem1.jpg" 
+    alt="Muro da Cidade"  title="Muro da cidade de Bessa" 
+    width="513" height="342">
+</p>
+</div>
+
+<p><img src="http://files.cod3r.com.br/curso-web/imagem2.gif" alt="Muro da Cidade" title="Esse é um GIF" width="513" height="342"></p>
+
+
+
+
+<p class="cicular">
+    <img  src="http://files.cod3r.com.br/curso-web/imagem3.png" alt="Este é um PNG" 
+    width="513" height="342" 
+    title="Esse é um PNG">
+</p>
+
+
+<p class="texto">
+    <img  src="http://files.cod3r.com.br/curso-web/avatar.jpg" alt="Avatar" 
+    title="Esse é um PNG"
+    width="513" height="342" aling="left">
+    Hahuiahiauhui hdsauih fiuh iuhdiuf  fdsklfjsdkljfsdlkjfldskjflsdkjflksdjfldskjflk
+    fsjlkdjsflkjdslfkjsdklfjsdlkfjdkls
+    sjdflksdjflksdjflksdjflksdjflksdjflksdjflksdjflkjsdflkjsdf apad k 
+    djasdklasjdlkajsdlkjsa ijfrioshe uhiu hdsauihd iuhfgiu a
+</p>
+
+
+<style> 
+    .cicular {
+        width: 513px;
+        background-color: #444;
+    
+    }
+    
+    .texto { 
+        width: 400px;
+    }
+
+    .texto img { 
+        margin-right: 10px;
+    }
+    
+    </style>
+
+    <script>
+    function mover(elem, inicio, fim, passo, callback) {
+        const novoInicio = inicio - passo
+        if(novoInicio >= fim) {
+            elem.style.left = novoInicio + 'px'
+            setTimeout(() => mover(elem, novoInicio, fim, passo, callback), 7)
+        }else {
+            callback()
+        }
+    }
+    const p = document.querySelector('[wm-slider] > p')
+    p.style.display = 'block'
+    mover(p, 1500, -400, 5, () => {
+        console.log('terminou')
+    })
+    </script>

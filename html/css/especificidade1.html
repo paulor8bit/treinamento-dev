@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Especificidade CSS</title>
+    <style>
+        /* https://developer.mozilla.org/pt-BR/docs/Web/CSS/Specificity */
+        
+        p { 
+
+            background-color: #aaa;
+                    }
+
+        .observacao { 
+            /* Tente a ficar como prioridade */
+            background-color: #5F5;
+            border: dashed 5px;
+            padding: 20px !important ; /* prioridade */ 
+            font-size: 40px;
+        }
+
+        p.observacao { 
+        /* Tente a ficar com mais da prioridade */
+
+            padding: 2px; 
+            background: linear-gradient(to right, red, yellow); /* Faz ficar as cores gradientes */
+        }
+    </style>
+</head>
+
+<body>
+    <p class='observacao'>Olha essa observação!!!!</p>
+</body>
+
+</html>

@@ -1,0 +1,12 @@
+.fundoVermelho { 
+                background-color: red;
+            }
+            .negrito{
+                font-weight: bold;
+            }
+            #textoPrincipal {
+                font-size: 40px;
+                font-weight: bold;
+                color: white;
+                background-color: #444;
+            }

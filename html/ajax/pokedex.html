@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Axios #01</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+    <!-- TEM A REFERENCIA DO AXIOS -->
+    <script src="js/axios.js"></script>
+</head>
+
+<body class="conteudo exercicio">
+    <form id="form-adiciona">
+    <h1>Pokedex</h1>
+    <p>Digite numero do Pokemon
+    <input type="text" name="numero"> 
+    <button id="adcionar">Pesquisar</button>
+    <p></p><br><span id="number"></span>
+    <br><span id="pokemon"></span>
+    <br><span id="type"></span>
+    <br><span id="hp"></span>
+    <br><span id="atack"></span>
+    <br><span id="defense"></span>
+    <!-- <br><span id="satack"></span>
+    <br><span id="sdefense"></span> -->
+    <br><span id="speed"></span>
+    </form>
+    <script>
+        function adcionalinha (saida) { 
+            let elemento_pai = document.body
+            let titulo = document.createElement('p')
+            let texto  = document.createTextNode(saida)
+            titulo.appendChild(texto)
+            elemento_pai.appendChild(titulo)
+    
+                }
+
+
+        const url = 'dados/pokedex.json'
+        axios(url).then( resp  => { 
+        const pokedex = resp.data
+        
+        let botaoAdicionar = document.querySelector("#adcionar")
+        botaoAdicionar.addEventListener("click", function(event) {
+            event.preventDefault()
+            let form = document.querySelector("#form-adiciona")
+            let numero = form.numero.value*1
+            
+
+            // let saida1= (numero)
+            // adcionalinha(`O pokemon é ${pokedex[numero-1].name.english}`)
+            document.getElementById("number").innerHTML = `Número: ${pokedex[numero-1].id}`
+            document.getElementById("pokemon").innerHTML = `Nome: ${pokedex[numero-1].name.english}`
+            document.getElementById("type").innerHTML = `Tipo: ${pokedex[numero-1].type}`
+            document.getElementById("hp").innerHTML = `HP: ${pokedex[numero-1].base.HP}`
+            document.getElementById("atack").innerHTML = `Atack: ${pokedex[numero-1].base.Attack}`
+            document.getElementById("defense").innerHTML = `Defense: ${pokedex[numero-1].base.Defense}`
+            // document.getElementById("satack").innerHTML = `${pokedex[numero-1].base."Sp. Attack"}`
+            // document.getElementById("sdefense").innerHTML = `${pokedex[numero-1].base."Sp. Defense"}`
+            document.getElementById("speed").innerHTML = `Speed: ${pokedex[numero-1].base.Speed}`
+            
+
+        })
+
+  
+    
+})
+
+
+    </script>
+</body>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Texto</title>
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <style>
+        /* ... */
+        * {
+            margin: 0;
+        }
+
+        html { 
+            font-size: 28px; 
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        p { 
+            /* Valores padrões */
+            font-size: 1em; 
+            font-size: 100%; 
+            font-size: 16px; 
+            font-size: pt;
+
+            /* Valores absulutas */
+            font-size: 100px;
+            font-size: 72pt; 
+            font-size: 1in; /*polegada*/
+
+            /* Unidade relativas */
+            font-size: 2.2em; /*2x*/ 
+            font-size: 2.2rem; /* 2x de acordo com a referencia*/ 
+            font-size: 50vh ;
+            font-size: 10vw; 
+
+            font-family: monospace;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-family: sans-serif;
+            font-family: 'Indie Flower'; /*fonte do Google*/ 
+
+            font-weight: 100; /* deixar negrito*/ 
+            font-style: italic;
+            text-transform: capitalize; /*Mudar para tudo maisculo ou mais */ 
+            word-spacing: 100px;
+            letter-spacing: 25px;
+            line-height: 2.5em; /* Espaçamento entre linhas*/
+            text-align: right; /*O "Justificar" de editores de texto*/
+
+
+        }
+
+        .botao { 
+            font-size: 28px; 
+            text-decoration: none;
+            padding: 10px 30px;
+            border-radius: 25px;
+
+        }
+
+        .destaque { 
+            /* Criar botão */
+            color: white; 
+            background: tomato; 
+            box-shadow: 2px 2px 1px 1px black;
+        }
+
+        .destaque:active { 
+            box-shadow: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <p>
+            Que texto
+            <br>legal!!!
+        </p>
+    </div> 
+    <!-- botao e destaque são duas classes -->
+    <a href="http://google.com" class="botao destaque">Google</a>
+</body>
+
+</html>

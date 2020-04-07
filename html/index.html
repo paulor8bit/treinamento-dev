@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-with, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Exercicios HTML</title>
+        <link rel="stylesheet" type="text/css" href="theme.css">
+       
+        <style> 
+       
+        </style>
+
+    </head>
+    <body>
+        <header>
+            <h1>Exercicios HTML</h1>
+        </header>
+        <nav>
+            <a href wm-nav="excercios/teste.html">01 - Teste</a> ||
+            <a href wm-nav="excercios/temp.html">01 - Temp</a> || 
+            <a href="excercios/temp02.html">02 - Teste Nova Pagina</a> ||
+            <a href="excercios/temp02.html">02 - Teste Nova Pagina</a> ||
+            <a href="excercios/calc/index.html">CALC</a> ||
+            <a href wm-nav="excercios/texto.html">03 - Texto 01</a> ||
+            <a href="excercios/calo.html">Calculo de Calorias</a> ||
+            <a href="excercios/dado.html">Jogo Dado</a> 
+            <br><br>
+            Modulo Node: <a href="excercios/aula21.html">Aula 21</a> || <a href="excercios/aula22.html">Aula 22</a> 
+            <br><br>
+            Modulo HTML: <a href wm-nav="excercios/texto2.html">174 - Texto 02</a> ||
+            <a href wm-nav="excercios/listas.html">175 - Listas</a> ||
+            <a href wm-nav="excercios/176.html">176 - Listas Aninhadas (Formato Pastas)</a> ||
+            <a href wm-nav="excercios/178.html">178 - Links</a> ||
+            <a href = "excercios/180.html">180 - Tabela (Fazer somar com javascript)</a> ||
+            <a href wm-nav="excercios/form/form.html">181 - Formulario</a> ||
+            <a href="excercios/184.html">184 - Imagens (REVER)</a> ||
+            <a href="excercios/187.html">187 - Video</a> ||
+            <a href wm-nav="excercios/189.html">189 - Tags não visuais</a> ||<br>      
+            Modulo CSS: <a href="css/index.html">Modulo</a> ||<br>  
+            Seção 13: <a href="dom/index.html">Integrando HTML, CSS e JS</a> ||<br>
+            Seção 14: <a href="ajax/index.html">Ajax</a> ||<br>
+
+        </nav>
+        <section id="conteudo"></section>
+        <footer>
+            
+            Curso de Web Moderno
+        </footer>
+        <script> 
+        document.querySelectorAll('[wm-nav]').forEach(link => {
+            const conteudo = document.getElementById('conteudo')
+        //console.log(link)
+        link.onclick = function(e) {
+            e.preventDefault()
+            console.log('ação')
+       
+            fetch(link.getAttribute('wm-nav'))
+                .then(resp => resp.text())
+                .then(html => conteudo.innerHTML = html)
+            }
+        })
+        </script>
+    </body>
+</html>

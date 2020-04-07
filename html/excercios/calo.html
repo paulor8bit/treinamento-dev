@@ -1,0 +1,54 @@
+<form id="form-adiciona">
+    <h1 id="q">Caloria Basal</h1>
+    <h3 id="q">Calculando seu gasto de caloria Basal</h3>
+    <p>Digite seu peso em KG
+    <input type="text" name="peso"> 
+    <p>Digite sua altura em CM
+    <input type="text" name="altura">
+    
+    <p>Digite sua idade
+        <input type="text" name="idade">
+    <button id=adcionar>Incluir</button>
+</form>
+
+<script>
+
+function adcionalinha (saida) { 
+let elemento_pai = document.body
+let titulo = document.createElement('p')
+let texto  = document.createTextNode(saida)
+titulo.appendChild(texto)
+elemento_pai.appendChild(titulo)
+    
+}
+
+let botaoAdicionar = document.querySelector("#adcionar")
+botaoAdicionar.addEventListener("click", function(event) {
+    event.preventDefault()
+    let form = document.querySelector("#form-adiciona")
+    let peso = form.peso.value
+    let altura = form.altura.value
+    let idade = form.idade.value
+    let caloria = 0 
+    caloria = (66+(13.7*peso)+(5*altura)-(6.8*idade))
+
+    let saida1= (caloria)
+    adcionalinha(`Sua caloria basal é de ${saida1} kcal`)
+  
+    
+})
+
+
+
+</script>
+
+<style> 
+    input, textarea, select { 
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    input[type=radio], input[type=checkbox] {
+        display: inline
+    }
+    </style>

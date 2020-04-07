@@ -1,0 +1,91 @@
+<form id="form-adiciona">
+    <h1 id="q">Jogo do Dado</h1>
+    <h3 id="q"></h3>
+    <p>Tente pegar numero menor que 12 e maior que 6</p>
+    O numero é <numero id="jogadasOpcao">8</numero><br>
+   <button id=menor>Menor</button> 
+   <button id=maior>Maior</button>
+   <p>
+   <img id="imagem" width="300px" height="200px" src="">
+   <!-- <img id="imgGanhou" src="imaged\ganhou.jpg"> -->
+   <!-- <img id="imgPerdeu" src="imaged\perdeu.jpg"> -->
+</form>
+
+<script>
+//➊➋➌➍➎➏➐➑➒➓
+function getInteiroAleatorio (min, max) { 
+    const valor = Math.random() * (max - min) + min
+    return Math.floor(valor)
+}
+
+function adcionalinha (saida) { 
+    let elemento_pai = document.body
+    let titulo = document.createElement('p')
+    let texto  = document.createTextNode(saida)
+    titulo.appendChild(texto)
+    elemento_pai.appendChild(titulo)
+}  
+
+ 
+const jogadas = {
+    opcao:  getInteiroAleatorio(1, 12), 
+    sorte: getInteiroAleatorio(1, 6)
+    }
+ 
+const rolagem = {
+    somar: jogadas.opcao + jogadas.sorte,
+    diminuir: jogadas.opcao - jogadas.sorte
+}
+
+document.getElementById("jogadasOpcao").innerHTML = jogadas.opcao
+
+function verifica (resultado) { 
+    if (resultado >= 6 && resultado <= 12){
+        let saida2= `Parabens você venceu`
+        adcionalinha(saida2)
+        img = document.getElementById("imagem")
+        img.src = "ganhou.jpg"     
+
+
+      }
+     else {
+        let saida2= `Que pena, você perde`
+        adcionalinha(saida2)
+        img = document.getElementById("imagem")
+        img.src = "perdeu.jpg"
+       
+       }
+ 
+ 
+
+
+
+
+
+}
+
+let botaoAdicionar = document.querySelector("#menor")
+botaoAdicionar.addEventListener("click", function(event) {
+    event.preventDefault()
+    adcionalinha(`O dado que você rolou é:  ${rolagem.diminuir}`)
+    const resultado = rolagem.diminuir
+    adcionalinha(verifica(resultado))
+    
+    
+})
+
+let botaoAdicionarm = document.querySelector("#maior")
+botaoAdicionarm.addEventListener("click", function(event) {
+    event.preventDefault()
+    adcionalinha(`O dado que você rolou é: ${rolagem.somar}`)
+    const resultado = rolagem.somar
+    adcionalinha(verifica(resultado))
+    
+    
+})
+
+</script>
+
+<style> 
+
+    </style>
