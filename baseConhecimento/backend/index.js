@@ -13,6 +13,7 @@ consign()
     .then('./config/middlewares.js')
     .then('./api/validar.js')
     .then('./api')
+    .then('./schedule')
     .then('./config/routes.js')
     .into(app)
 
