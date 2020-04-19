@@ -1,5 +1,7 @@
 <template>
-    <div class="content"></div>
+    <div class="content">
+        <router-view></router-view>
+    </div>
 </template>
 
 <script>
@@ -9,7 +11,7 @@ export default {
 </script>
 
 <style>
-    .content { 
+    .content {
         grid-area: content;
         background-color: #efefef;
         padding: 20px;
