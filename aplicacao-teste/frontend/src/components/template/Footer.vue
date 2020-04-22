@@ -1,6 +1,6 @@
 <template>
     <footer class="footer">
-        <span>Copyright <strong>Cod3r</strong> © 2015-2018</span>
+        <span>Feito por <strong>Paulinho</strong> 2020</span>
     </footer>
 </template>
 
