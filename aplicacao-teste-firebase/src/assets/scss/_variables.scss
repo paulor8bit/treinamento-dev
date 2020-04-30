@@ -1,0 +1,26 @@
+$dark: #000 !important;
+$darker: #111 !important;
+$dark-medium: #333 !important;
+$dark-low: #666 !important;
+$light-low: #999 !important;
+$light-medium: #ddd !important;
+$ligther: #ddd !important;
+$light: #fff !important;
+
+$featured: #ff9900 !important;
+$featured-dark: #d68100 !important;
+
+
+:root {
+  --dark: #{$dark};
+  --darker: #{$darker};
+  --dark-medium: #{$dark-medium};
+  --dark-low: #{$dark-low};
+  --light-low: #{$light-low};
+  --light-medium: #{$light-medium};
+  --ligther: #{$ligther};
+  --ligther: #{$ligther};
+
+  --featured: #{$featured};
+  --featured-dark: #{$featured-dark};
+}

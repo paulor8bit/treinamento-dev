@@ -7,7 +7,7 @@ const server = express();
 // utilizando o módulo para que o express entenda JSON como request body
 server.use(express.json());
 
-const users = ['Ilda', 'Vinícius', 'Amanda', 'Juan'];
+const users = ['Ilda', 'Vinicius', 'Amanda', 'Juan'];
 
 // middleware global
 server.use((req, res, next) => {

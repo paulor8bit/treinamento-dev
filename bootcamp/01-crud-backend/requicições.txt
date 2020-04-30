@@ -1,0 +1,14 @@
+Listagem  Todos Users
+curl --request GET \ --url http://localhost:3000/users
+
+Listagem Users
+curl --request GET \ --url http://localhost:3000/users/3
+
+Criar User
+curl --request POST \ --url http://localhost:3000/users/ \ --header 'content-type: application/json' \ --data '{ "name": "Girl" }'
+
+Editar User
+curl --request PUT \ --url http://localhost:3000/users/3 \ --header 'content-type: application/json' \ --data '{ "name": "EGirl"}'
+
+Deletar User
+curl --request PUT \ --url http://localhost:3000/users/3
