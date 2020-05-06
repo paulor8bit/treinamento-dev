@@ -1,10 +1,16 @@
-import User from '../models/User';
 import Notification from '../schemas/Notification';
+import User from '../models/User';
 
 class NotificationController {
   async index(req, res) {
+    /**
+     * Check if loggedUser is a provider
+     */
     const checkIsProvider = await User.findOne({
-      where: { id: req.userId, provider: true },
+      where: {
+        id: req.userId,
+        provider: true,
+      },
     });
 
     if (!checkIsProvider) {
@@ -23,8 +29,6 @@ class NotificationController {
   }
 
   async update(req, res) {
-    // const notification = await Notification.findById(req.params.id);
-
     const notification = await Notification.findByIdAndUpdate(
       req.params.id,
       { read: true },
