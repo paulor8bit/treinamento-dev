@@ -1,42 +1,48 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import TechItem from './TechItem'
+class TechList extends Component {
+  
+  state = {
+    newTech: "",
+    techs: ["Node.JS", "ReactJS", "React Native"]
+  };
 
+  handleInputChange = e => {
+    this.setState({ newTech: e.target.value });
+  };
 
-class TechList extends Component { 
-    state = {
-        newTech: '',
-        techs: [
-            'Node.js',
-            'ReactJS',
-            'React Native'
-        ]
-    };
+  handleSubmit = e => {
+    e.preventDefault();
+    this.setState({
+      techs: [...this.state.techs, this.state.newTech],
+      newTech: ""
+    });
+  };
 
-    handleInputChange = e => {
-        this.setState({newTech: e.target.value});
-    }
+  handleDelete = tech => {
+    this.setState({ techs: this.state.techs.filter(t => t !== tech) });
+  };
 
-    handleSubmit = e => {
-        e.preventDefault();
-
-        this.setState({techs: [...this.state.techs, this.state.newTech],
-        newTech: ''})
-    }
-    
-    render() {
-        return (
-        <form onSubmit={this.handleSubmit}>
-            
-            <ul>
-                {this.state.techs.map(tech => <li key={tech}>{tech}</li>)}
-            </ul>
-            <input type="text" 
-            onChange={this.handleInputChange} 
-            value={this.state.newTech}
-            />
-            <button type="submit">Enviar</button>
-         </form>
-        );
-    }
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        {/* <h1>{this.state.newTech}</h1> */}
+        <ul>
+          {this.state.techs.map(tech => (
+            <TechItem key={tech} tech={tech}
+            onDelete={() => this.handleDelete(tech)}/>
+          ))}
+        
+        </ul>
+        <input
+          type="text"
+          value={this.state.newTech}
+          onChange={this.handleInputChange}
+        />
+        <button type="submit">Enviar</button>
+      </form>
+    );
+  }
 }
 
 export default TechList;
