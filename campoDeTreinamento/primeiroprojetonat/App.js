@@ -18,7 +18,8 @@ const styles = StyleSheet.create({
 export default function App() {
     return (
         <View style={styles.container}>
-            <Text style={styles.welcome}>Bem vindo ao React</Text>
+            <Text style={styles.welcome}>Bem vindo ao React :D</Text>
+            <Text style={styles.welcome}>Programando em Android</Text>
         </View>
     );
 }
