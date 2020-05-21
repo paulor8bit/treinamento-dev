@@ -1,0 +1,66 @@
+{
+  "stock": [
+    {
+      "id": 1,
+      "amount": 3
+    },
+    {
+      "id": 2,
+      "amount": 5
+    },
+    {
+      "id": 3,
+      "amount": 2
+    },
+    {
+      "id": 4,
+      "amount": 1
+    },
+    {
+      "id": 5,
+      "amount": 5
+    },
+    {
+      "id": 6,
+      "amount": 10
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "title": "Mega Driver",
+      "price": 379.9,
+      "image": "https://i.pinimg.com/originals/d5/b0/ff/d5b0ff41b320930b603b509de0f17887.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Super Famicom",
+      "price": 339.9,
+      "image": "https://i.pinimg.com/originals/74/72/3b/74723b33ab70d292393263f7d5ee9f33.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Game Boy",
+      "price": 419.9,
+      "image": "https://www.hit-japan.com/gb/19081920106.JPG"
+    },
+    {
+      "id": 5,
+      "title": "Mega Driver 2",
+      "price": 439.9,
+      "image": "https://gamefaqs1.cbsistatic.com/box/6/9/2/307692_front.jpg"
+    },
+    {
+      "id": 6,
+      "title": "Super Nintendo",
+      "price": 419.9,
+      "image": "https://3.bp.blogspot.com/-v_KeKr-GJAI/WLyAErpperI/AAAAAAAAAyw/dV-67HuCjjQDVWuu-CEoOi8C9Ti-xkOoQCLcB/s1600/snesbox1.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Master System",
+      "price": 379.9,
+      "image": "https://cdn.shopify.com/s/files/1/1861/2927/products/IMG_20191101_150637_1090x@2x.jpg?v=1572710980"
+    }
+  ]
+}
