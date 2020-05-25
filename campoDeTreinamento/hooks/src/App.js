@@ -3,11 +3,15 @@ import React, { useState, useEffect, useMemo, useCallback } from 'react';
 function App() {
   const [tech, setTech] = useState([]);
   const [newTech, setNewTech] = useState('');
+  const [newValue, setNewValue] = useState('');
+  const soma = newValue * 1 + newTech * 1;
 
   const handleAdd = useCallback(() => {
-    setTech([...tech, newTech]);
+    setTech([...tech, newTech, newValue]);
+
     setNewTech('');
-  }, [newTech, tech]);
+    setNewValue('');
+  }, [newValue, newTech, tech]);
 
   useEffect(() => {
     const storageTech = localStorage.getItem('tech');
@@ -32,10 +36,14 @@ function App() {
         <li>Node.js</li>
       </ul>
       <strong>Você tem {techSize} teconologias</strong>
+      <p>Digite o Valor 1</p>
       <input value={newTech} onChange={(e) => setNewTech(e.target.value)} />
+      <p>Digite o Valor 2</p>
+      <input value={newValue} onChange={(e) => setNewValue(e.target.value)} />
       <button type="button" onClick={handleAdd}>
         Adcionar
       </button>
+      <strong>A soma é: {soma}</strong>
     </>
   );
 }
