@@ -1,11 +1,13 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState, useCallback } from 'react';
 
-function Um() {
+function Quatro() {
   const [respostaQuestao, setQuestao] = useState([]);
   const [QuestaoValorUm, setQuestaoValorUm] = useState('');
   const [QuestaoValorDois, setQuestaoValorDois] = useState('');
-  const calculoQuestao = QuestaoValorDois * 1 + QuestaoValorUm * 1;
+  const calculoQuestao =
+    (QuestaoValorDois / 100) * (QuestaoValorUm * 1) + QuestaoValorUm * 1;
+  // const diferenca = calculoQuestao - QuestaoValorUm * 1;
 
   const handleAddQuestao = useCallback(() => {
     setQuestao([calculoQuestao]);
@@ -22,26 +24,28 @@ function Um() {
           do aumento e do novo salário.
         </strong>
       </p>
-      <p>Digite o Valor 1</p>
+      <p>Digite o valor do salário</p>
       <input
         value={QuestaoValorUm}
         onChange={(e) => setQuestaoValorUm(e.target.value)}
       />
 
-      <p>Digite o Valor 2</p>
+      <p>Digite o aumento do salário em porcentagem</p>
       <input
         value={QuestaoValorDois}
         onChange={(e) => setQuestaoValorDois(e.target.value)}
       />
 
       <button type="button" onClick={handleAddQuestao}>
-        Somar
+        Calcular
       </button>
+      <p>O novo salário é de R$: {respostaQuestao}</p>
       <p>
-        <strong>A soma é: {respostaQuestao}</strong>
+        O aumento foi de R$:{' '}
+        {respostaQuestao ? respostaQuestao - QuestaoValorUm * 1 : ''}
       </p>
     </>
   );
 }
 
-export default Um;
+export default Quatro;

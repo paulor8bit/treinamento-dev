@@ -5,7 +5,7 @@ function Um() {
   const [respostaQuestao, setQuestao] = useState([]);
   const [QuestaoValorUm, setQuestaoValorUm] = useState('');
   const [QuestaoValorDois, setQuestaoValorDois] = useState('');
-  const calculoQuestao = QuestaoValorDois * 1 + QuestaoValorUm * 1;
+  const calculoQuestao = ((QuestaoValorUm * 1) / QuestaoValorDois) * 1;
 
   const handleAddQuestao = useCallback(() => {
     setQuestao([calculoQuestao]);
@@ -21,23 +21,23 @@ function Um() {
           percorrer e a velocidade média esperada para a viagem.
         </strong>
       </p>
-      <p>Digite o Valor 1</p>
+      <p>Digite a distância da viagem</p>
       <input
         value={QuestaoValorUm}
         onChange={(e) => setQuestaoValorUm(e.target.value)}
       />
 
-      <p>Digite o Valor 2</p>
+      <p>Digite a velocidade média</p>
       <input
         value={QuestaoValorDois}
         onChange={(e) => setQuestaoValorDois(e.target.value)}
       />
 
       <button type="button" onClick={handleAddQuestao}>
-        Somar
+        Calcular
       </button>
       <p>
-        <strong>A soma é: {respostaQuestao}</strong>
+        <strong>O tempo médio gasto será de: {respostaQuestao}</strong>
       </p>
     </>
   );

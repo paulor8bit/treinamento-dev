@@ -1,11 +1,11 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState, useCallback } from 'react';
 
-function Um() {
+function Nove() {
   const [respostaQuestao, setQuestao] = useState([]);
   const [QuestaoValorUm, setQuestaoValorUm] = useState('');
   const [QuestaoValorDois, setQuestaoValorDois] = useState('');
-  const calculoQuestao = QuestaoValorDois * 1 + QuestaoValorUm * 1;
+  const calculoQuestao = QuestaoValorDois * 1 * 60 + QuestaoValorUm * 1 * 0.15;
 
   const handleAddQuestao = useCallback(() => {
     setQuestao([calculoQuestao]);
@@ -23,26 +23,26 @@ function Um() {
           carro custa R$ 60,00 por dia e R$ 0,15 por km rodado.
         </strong>
       </p>
-      <p>Digite o Valor 1</p>
+      <p>quantidade de km percorridos</p>
       <input
         value={QuestaoValorUm}
         onChange={(e) => setQuestaoValorUm(e.target.value)}
       />
 
-      <p>Digite o Valor 2</p>
+      <p>quantidade de dias alugado</p>
       <input
         value={QuestaoValorDois}
         onChange={(e) => setQuestaoValorDois(e.target.value)}
       />
 
       <button type="button" onClick={handleAddQuestao}>
-        Somar
+        Calcular
       </button>
       <p>
-        <strong>A soma é: {respostaQuestao}</strong>
+        <strong>O valor é R$: {respostaQuestao}</strong>
       </p>
     </>
   );
 }
 
-export default Um;
+export default Nove;

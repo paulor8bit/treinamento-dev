@@ -1,11 +1,10 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState, useCallback } from 'react';
 
-function Um() {
+function Sete() {
   const [respostaQuestao, setQuestao] = useState([]);
   const [QuestaoValorUm, setQuestaoValorUm] = useState('');
-  const [QuestaoValorDois, setQuestaoValorDois] = useState('');
-  const calculoQuestao = QuestaoValorDois * 1 + QuestaoValorUm * 1;
+  const calculoQuestao = QuestaoValorUm * 1 * 2 + 30;
 
   const handleAddQuestao = useCallback(() => {
     setQuestao([calculoQuestao]);
@@ -17,30 +16,23 @@ function Um() {
     <>
       <p>
         <strong>
-          7) Converta uma temperatura digitada em Celsius para Fahrenheit. F =
-          9*C/5 + 32
+          7) Converta uma temperatura digitada em Celsius para Fahrenheit.
         </strong>
       </p>
-      <p>Digite o Valor 1</p>
+      <p>Digite o Valor em Celsius</p>
       <input
         value={QuestaoValorUm}
         onChange={(e) => setQuestaoValorUm(e.target.value)}
       />
 
-      <p>Digite o Valor 2</p>
-      <input
-        value={QuestaoValorDois}
-        onChange={(e) => setQuestaoValorDois(e.target.value)}
-      />
-
       <button type="button" onClick={handleAddQuestao}>
-        Somar
+        Converter
       </button>
       <p>
-        <strong>A soma é: {respostaQuestao}</strong>
+        <strong>A conversão para Fahrenheit é: {respostaQuestao}</strong>
       </p>
     </>
   );
 }
 
-export default Um;
+export default Sete;

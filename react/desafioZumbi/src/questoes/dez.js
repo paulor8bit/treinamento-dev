@@ -1,11 +1,12 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState, useCallback } from 'react';
 
-function Um() {
+function Dez() {
   const [respostaQuestao, setQuestao] = useState([]);
   const [QuestaoValorUm, setQuestaoValorUm] = useState('');
   const [QuestaoValorDois, setQuestaoValorDois] = useState('');
-  const calculoQuestao = QuestaoValorDois * 1 + QuestaoValorUm * 1;
+  const calculoQuestao =
+    (QuestaoValorDois * 1 * 365 * 1 * QuestaoValorUm) / 144;
 
   const handleAddQuestao = useCallback(() => {
     setQuestao([calculoQuestao]);
@@ -24,26 +25,26 @@ function Um() {
           total de dias.
         </strong>
       </p>
-      <p>Digite o Valor 1</p>
+      <p>quantidade de cigarros fumados por dia</p>
       <input
         value={QuestaoValorUm}
         onChange={(e) => setQuestaoValorUm(e.target.value)}
       />
 
-      <p>Digite o Valor 2</p>
+      <p>Digite a quantidade de anos que fumou</p>
       <input
         value={QuestaoValorDois}
         onChange={(e) => setQuestaoValorDois(e.target.value)}
       />
 
       <button type="button" onClick={handleAddQuestao}>
-        Somar
+        Caclular
       </button>
       <p>
-        <strong>A soma é: {respostaQuestao}</strong>
+        <strong>A quantidade de dias perdidos é: {respostaQuestao}</strong>
       </p>
     </>
   );
 }
 
-export default Um;
+export default Dez;
