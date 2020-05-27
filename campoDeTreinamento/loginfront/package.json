@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
     "cors": "^2.8.5",
+    "date-fns-tz": "^1.0.10",
     "history": "^4.10.1",
     "icons": "^1.0.0",
     "immer": "^6.0.8",

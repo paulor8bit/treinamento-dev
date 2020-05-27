@@ -1,0 +1,3 @@
+#!/bin/bash
+echo “Qual o nome de uma de suas músicas favoritas?”ead nome_musica;
+echo “Você gosta de ouvir $nome_musica!
