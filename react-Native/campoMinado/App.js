@@ -5,7 +5,7 @@ import params from './src/params'
 
 import MineField from './src/components/MineField'
 import {createMinedBoard, cloneBoard, openField, 
-hadExplosion, wonGame, showMines} from './src/functions'
+hadExplosion, wonGame, showMines, invertFlag} from './src/functions'
 export default class App extends Component {
 
   constructor(props) {
@@ -47,13 +47,26 @@ export default class App extends Component {
 
     this.setState({ board, lost, won })
   }
+
+  onSelectField = (row, column) => {
+    const board = cloneBoard(this.state.board)
+    invertFlag(board, row, column)
+    const won = wonGame(board)
+
+    if (won) { 
+      Alert.alert('Parabéns', 'Você Venceu!')
+    }
+    this.setState({board, won})
+  }
+
   render() {
     return (
       <View style={styles.container}>
 
               <View style={styles.board}>
                 <MineField board={this.state.board}
-                onOpenField={this.onOpenField} />
+                onOpenField={this.onOpenField}
+                onSelectField={this.onSelectField} />
               </View> 
       </View>
     )
