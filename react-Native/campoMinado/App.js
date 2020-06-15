@@ -1,53 +1,73 @@
  
 import React, { Component } from 'react';
-import { StyleSheet, View, Text} from 'react-native';
+import { StyleSheet, View, Text, Alert} from 'react-native';
 import params from './src/params'
 
 import MineField from './src/components/MineField'
-import {createMinedBoard} from './src/functions'
+import {createMinedBoard, cloneBoard, openField, 
+hadExplosion, wonGame, showMines} from './src/functions'
 export default class App extends Component {
- 
- constructor(props) { 
-   super(props)
-   this.state = this.createState()
- }
- 
+
+  constructor(props) {
+    super(props)
+    this.state = this.createState()
+  }
+
   minesAmount = () => {
     const cols = params.getColumnsAmount()
     const rows = params.getRowsAmount()
     return Math.ceil(cols * rows * params.difficultLevel)
   }
 
-  createState = () => { 
+  createState = () => {
     const cols = params.getColumnsAmount()
     const rows = params.getRowsAmount()
-    return { 
+    return {
       board: createMinedBoard(rows, cols, this.minesAmount()),
+      won: false,
+      lost: false,
+      showLevelSelection: false,
     }
   }
 
+  onOpenField = (row, column) => {
+    const board = cloneBoard(this.state.board)
+    openField(board, row, column)
+    const lost = hadExplosion(board)
+    const won = wonGame(board)
 
-  render(){
+    if (lost) {
+      showMines(board)
+      Alert.alert('Perdeu!', 'Que pena!')
+    }
+
+    if (won) {
+      Alert.alert('Parabéns', 'Você Venceu!')
+    }
+
+    this.setState({ board, lost, won })
+  }
+  render() {
     return (
       <View style={styles.container}>
 
               <View style={styles.board}>
-                <MineField board={this.state.board} />
+                <MineField board={this.state.board}
+                onOpenField={this.onOpenField} />
               </View> 
       </View>
     )
+  
   }
 }
- 
+
 const styles = StyleSheet.create({
-  container:{
+  container: {
     flex: 1,
-    justifyContent: 'flex-end',
-    alignItems:'center',
-    backgroundColor: '#F5FCFF'
+    justifyContent: 'flex-end'
   },
   board: {
-    alignItems: 'center', 
+    alignItems: 'center',
     backgroundColor: '#AAA'
   }
-})
+});
