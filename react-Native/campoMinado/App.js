@@ -1,12 +1,19 @@
- 
-import React, { Component } from 'react';
-import { StyleSheet, View, Text, Alert} from 'react-native';
+import React, {Component} from 'react';
+import {StyleSheet, Text, View, Alert} from 'react-native';
 import params from './src/params'
-
 import MineField from './src/components/MineField'
 import Header from './src/components/Header'
-import {createMinedBoard, cloneBoard, openField, 
-hadExplosion, wonGame, showMines, invertFlag, flagsUsed} from './src/functions'
+import LevelSelection from './src/screens/LevelSelection'
+import {
+  createMinedBoard,
+  cloneBoard,
+  openField,
+  hadExplosion,
+  wonGame,
+  showMines,
+  invertFlag,
+  flagsUsed
+} from './src/functions'
 export default class App extends Component {
 
   constructor(props) {
@@ -60,22 +67,29 @@ export default class App extends Component {
     this.setState({board, won})
   }
 
+  onLevelSelected = level => {
+    params.difficultLevel = level
+    this.setState(this.createState())
+  }
+
   render() {
     return (
       <View style={styles.container}>
+        <LevelSelection isVisible={this.state.showLevelSelection}
+          onLevelSelected={this.onLevelSelected}
+          onCancel={() => this.setState({ showLevelSelection: false })} />
         <Header flagsLeft={this.minesAmount() - flagsUsed(this.state.board)}
-        onNewGame={() => this.setState(this.createState())} />
-              <View style={styles.board}>
-                <MineField board={this.state.board}
-                onOpenField={this.onOpenField}
-                onSelectField={this.onSelectField} />
-              </View> 
+          onNewGame={() => this.setState(this.createState())} 
+          onFlagPress={() => this.setState({ showLevelSelection: true })} />
+        <View style={styles.board}>
+          <MineField board={this.state.board} 
+            onOpenField={this.onOpenField}
+            onSelectField={this.onSelectField} />
+        </View>
       </View>
-    )
-  
+    );
   }
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
