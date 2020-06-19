@@ -35,6 +35,8 @@ export default class TaskList extends Component {
         this.setState({ tasks })
     }
 
+   
+
     render() {
         const today = moment().locale('pt-br').format('ddd, D [de] MMMM')
         return (
