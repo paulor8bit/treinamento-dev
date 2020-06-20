@@ -67,6 +67,7 @@ export default class TaskList extends Component {
             <View style={styles.container}>
                 <AddTask isVisible={this.state.showAddTask}
                     onCancel={() => this.setState({ showAddTask: false })} />
+                    
                 <ImageBackground source={todayImage}
                     style={styles.background}>
                     <View style={styles.iconBar}>
@@ -122,6 +123,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginHorizontal: 20,
         justifyContent: 'flex-end',
-        marginTop: Platform.OS === 'ios' ? 40 : 10
+        marginTop: 40
     }
 });
