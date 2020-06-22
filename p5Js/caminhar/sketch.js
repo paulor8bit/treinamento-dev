@@ -6,6 +6,7 @@ function setup(){
 }
 
 function andar() {
+    //https://keycode.info/
     if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) 
     {
         x = x-10
