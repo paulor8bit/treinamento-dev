@@ -5,8 +5,12 @@ function setup(){
     createCanvas(700,500)
 }
 
-function andar() {
+let andar = 0
+function personagem(andar) {
     //https://keycode.info/
+    const tamanhox = 25
+    const tamanhoy = 25
+    rect(x, y, tamanhox, tamanhoy)
     if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) 
     {
         x = x-10
@@ -26,9 +30,6 @@ function andar() {
 function draw()
 {
     background(0)
-    rect(x, y, 25, 25)
+    personagem(andar)
     
-    andar()
-    
-
 }
