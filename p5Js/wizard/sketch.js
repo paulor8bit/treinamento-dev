@@ -9,10 +9,10 @@ function preload() {
   somDoJogo = loadSound('sons/atack.mp3')
 }
 function setup() {
+  somDoJogo.loop()
   createCanvas(windowWidth, windowHeight);
   cenario = new Cenario(imagemCenario, 3)
   personagem = new Personagem(imagemPersonagem)
-  somDoJogo.loop()
   frameRate(30)
   
   

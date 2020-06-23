@@ -9,12 +9,9 @@ class Personagem {
             this.frameAtual = 0
     }
     exibe() {
-        image(this.imagem, 0, height-135, //pocisão
-            110, 135, //tamanho da imagem
-            this.matriz[this.frameAtual][0],
-            this.matriz[this.frameAtual][1],
-             220, 270  //corte da imagem
-             )
+        image(this.imagem, 0, height-135, 110, 135,
+            this.matriz[this.frameAtual][0], this.matriz[this.frameAtual][1],
+             220, 270)
 
              this.anima()
 
