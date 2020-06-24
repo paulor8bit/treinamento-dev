@@ -8,7 +8,7 @@ class Inimigo extends Animacao {
        
         this.frameAtual = 0
 
-                this.velocidade = 3 
+                this.velocidade = 10
         }  
     move() {
         this.x = this.x - this.velocidade

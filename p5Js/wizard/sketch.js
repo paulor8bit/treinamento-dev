@@ -1,7 +1,11 @@
 let imagemCenario
+// let imagemCenarioUm
+// let imagemCenarioDois
 let imagemPersonagem
 let imagemInimigo
 let cenario
+// let cenarioUm
+// let cenarioDois
 let somDoPulo
 let somDoJogo
 let personagem
@@ -24,16 +28,23 @@ const matrizInimigo =[
 
 function preload() {
   imagemCenario = loadImage('imagens/cenario/floresta.png')
+  // imagemCenarioUm = loadImage('imagens/cenario/floresta1.png')
+  // imagemCenarioDois = loadImage('imagens/cenario/floresta2.png')
   imagemPersonagem = loadImage('imagens/personagem/correndo.png')
   imagemInimigo = loadImage('imagens/inimigos/gotinha.png')
+  imagemGameOver = loadImage('imagens/assets/game-over.png')
   somDoJogo = loadSound('sons/atack.mp3')
   somDoPulo = loadSound('sons/somPulo.mp3')
+  // somGameOver = loadSound('sons/game-over-sound-effect.mp3');
   
 }
 function setup() {
   somDoJogo.loop()
   createCanvas(windowWidth, windowHeight);
+  
   cenario = new Cenario(imagemCenario, 3)
+  // cenarioUm = new Cenario(imagemCenarioUm, 1)
+  // cenarioDois = new Cenario(imagemCenarioDois, 3)
   
   personagem = new Personagem(matrizPersonagem, imagemPersonagem,
   0, 110, 135, 220, 270)
@@ -47,7 +58,13 @@ function setup() {
 }
 
 function keyPressed() {
-  if (key === 'ArrowUp') {
+  // if (key === 'ArrowUp') {
+  //   personagem.pula()
+  //   somDoPulo.play()
+  // }
+
+  if(keyIsDown(UP_ARROW) || keyIsDown(87))
+  {
     personagem.pula()
     somDoPulo.play()
   }
@@ -56,6 +73,10 @@ function keyPressed() {
 function draw() {
   cenario.exibe()
   cenario.move()
+  // cenarioUm.exibe()
+  // cenarioDois.exibe()
+  // cenarioUm.move()
+  // cenarioDois.move()
   inimigo.exibe()
   personagem.aplicaGravidade()
   inimigo.move()
@@ -63,6 +84,9 @@ function draw() {
   
   if(personagem.estaColidindo(inimigo) ) {
     console.log('colidiu')
+    // somDoJogo.stop()
     noLoop()
+    // somGameOver.play()
+    image(imagemGameOver, ( width / 2 ) - 206, ( height / 2 ) - 39, 412, 78);
   }
 }
