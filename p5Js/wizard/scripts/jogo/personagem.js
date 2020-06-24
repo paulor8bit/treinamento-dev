@@ -1,31 +1,34 @@
 class Personagem extends Animacao{ 
 
     
-    constructor(matriz, imagem, x, largura, altura,
+    constructor(matriz, imagem, x, variacaoY, largura, altura,
         larguraSprite, alturaSprite){
 
-        super(matriz, imagem, x, largura, altura,
+        super(matriz, imagem, x, variacaoY, largura, altura,
             larguraSprite, alturaSprite)
-            
-            this.yInicial = height - this.altura
+            this.variacaoY = variacaoY
+            //colocar personagem no gramado
+            this.yInicial = height - this.altura - this.variacaoY
             this.y = this.yInicial
+            //colocar personagem no gramado
             this.velocidadeDoPulo = 0
-            this.gravidade = 4
+            this.gravidade = 6
             this.pulos = 2
+            this.alturaDoPulo = 50
     }
     pula() {
         if (this.pulos > 0){
-            this.velocidadeDoPulo = - 30
+            this.velocidadeDoPulo = - this.alturaDoPulo
             this.pulos--
         }
-        
-
+      
     }
 
     aplicaGravidade(){
         this.y = this.y + this.velocidadeDoPulo
         this.velocidadeDoPulo = this.velocidadeDoPulo + this.gravidade
 
+        //voltar ao chao
         if(this.y > this.yInicial){
             this.y = this.yInicial
             this.pulos = 2
@@ -34,7 +37,7 @@ class Personagem extends Animacao{
 
     estaColidindo(inimigo) {
         const hitBox = .7
-        
+        //Mostrar campos
         // noFill()
         // rect(this.x, this.y, this.largura, this.altura)
         // rect(inimigo.x, inimigo.y, inimigo.largura, inimigo.altura)
