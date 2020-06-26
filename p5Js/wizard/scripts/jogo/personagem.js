@@ -15,6 +15,7 @@ class Personagem extends Animacao{
             this.gravidade = 6
             this.pulos = 2
             this.alturaDoPulo = 50
+            this.invencivel = false
     }
     pula() {
         if (this.pulos > 0){
@@ -41,8 +42,16 @@ class Personagem extends Animacao{
             this.pulos = 2
         }
     }
-
+    ficaInvencivel() {
+        this.invencivel = true
+        setTimeout(() => {
+            this.invencivel = false
+        }, 1000)
+    }
     estaColidindo(inimigo) {
+        if (this.invencivel) { 
+            return false
+        }
         const hitBox = .7
         //Mostrar campos
         // noFill()

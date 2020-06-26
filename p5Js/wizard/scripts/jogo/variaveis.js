@@ -1,3 +1,4 @@
+let fita
 let jogo
 let cenaAtual = 'telaInicial'
 let cenas
@@ -14,6 +15,10 @@ let cenarioUm
 let cenarioDois
 let cenarioTres
 let cenarioQuatro
+
+
+let vida
+let imagemVida
 let pontuacao
 
 let personagem

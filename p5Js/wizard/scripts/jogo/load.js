@@ -1,5 +1,7 @@
 
 function preload() {
+    fita = loadJSON('../fita/fita.json')
+  
     imagemTelaInicial = loadImage('imagens/cenario/telaInicial.png')
     imagemCenario = loadImage('imagens/cenario/floresta.png')
     imagemCenarioUm = loadImage('imagens/cenario/floresta1.png')
@@ -7,6 +9,7 @@ function preload() {
     imagemCenarioTres = loadImage('imagens/cenario/floresta3.png')
     imagemCenarioQuatro= loadImage('imagens/cenario/floresta4.png')
     imagemGameOver = loadImage('imagens/assets/game-over.png')
+    imagemVida = loadImage('imagens/assets/coracao.png')
     
     imagemPersonagem = loadImage('imagens/personagem/dogerun.png')
     
