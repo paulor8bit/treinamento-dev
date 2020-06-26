@@ -23,7 +23,14 @@ class Personagem extends Animacao{
         }
       
     }
-
+   direita(){
+       console.log('Foi Para direita')
+        this.x = this.x+20
+    }
+    esquerda(){
+        console.log('Foi Para Esquerda')
+         this.x = this.x-20
+     }
     aplicaGravidade(){
         this.y = this.y + this.velocidadeDoPulo
         this.velocidadeDoPulo = this.velocidadeDoPulo + this.gravidade

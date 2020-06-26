@@ -2,11 +2,13 @@
 function preload() {
     imagemTelaInicial = loadImage('imagens/cenario/telaInicial.png')
     imagemCenario = loadImage('imagens/cenario/floresta.png')
-    // imagemCenarioUm = loadImage('imagens/cenario/floresta1.png')
-    // imagemCenarioDois = loadImage('imagens/cenario/floresta2.png')
+    imagemCenarioUm = loadImage('imagens/cenario/floresta1.png')
+    imagemCenarioDois = loadImage('imagens/cenario/floresta2.png')
+    imagemCenarioTres = loadImage('imagens/cenario/floresta3.png')
+    imagemCenarioQuatro= loadImage('imagens/cenario/floresta4.png')
     imagemGameOver = loadImage('imagens/assets/game-over.png')
     
-    imagemPersonagem = loadImage('imagens/personagem/correndo.png')
+    imagemPersonagem = loadImage('imagens/personagem/dogerun.png')
     
     imagemInimigo = loadImage('imagens/inimigos/gotinha.png')
     imagemInimigoGrande = loadImage('imagens/inimigos/troll.png')
