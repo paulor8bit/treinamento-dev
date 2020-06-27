@@ -1,4 +1,4 @@
-// Time Conversion
+// TimeConversion
 //https://www.hackerrank.com/challenges/time-conversion/problem
 // Given a time in -hour AM/PM format, convert it to military (24-hour) time.
 
@@ -37,7 +37,6 @@ function timeConversion(s) {
 	for ( i=0; i < s.length ; i++ ){
 		fase[i] = s.charAt(i);		
 	}
-	
 	
 	if ( fase[fase.length-2] == 'P' ) {
 		let transforma = (fase[0]+fase[1])
