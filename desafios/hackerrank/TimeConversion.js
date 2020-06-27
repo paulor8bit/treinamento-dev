@@ -49,7 +49,7 @@ function timeConversion(s) {
 		
 	} else {
 		let transforma = (fase[0]+fase[1])
-		let transforma2 = (transforma*1)
+		
 		if (transforma == 12) {
 			return(`00:${fase[3]}${fase[4]}:${fase[6]}${fase[7]}` )
 		} else {
