@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {ImageBackground, Text, StyleSheet,
+import {ImageBackground, Text, StyleSheet, Alert,
         View, TextInput, TouchableOpacity, Platform} from 'react-native'
 import backgroundImage from '../../assets/imgs/login.jpg'
 import commonStyles from '../commonStyles'
@@ -11,6 +11,14 @@ export default class Auth extends Component {
         password: '', 
         confirmPassword: '', 
         stageNew: true
+    }
+
+    signiOrSignup = () => {
+        if(this.state.stageNew) {
+            Alert.alert('Sucesso', 'Criar a conta')
+        } else {
+            Alert.alert('Sucesso', 'Logar')
+        }
     }
     
     render () {
@@ -47,7 +55,7 @@ export default class Auth extends Component {
                                    
                     
                 }
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={this.signiOrSignup}>
                         <View style={styles.button}>
                             <Text style={styles.buttonText}>
                                 {
@@ -55,9 +63,16 @@ export default class Auth extends Component {
                                 }
                             </Text>
                         </View>
+                        
                     </TouchableOpacity>
 
                 </View>
+                <TouchableOpacity style={{padding: 10}}
+                 onPress={ () => this.setState({stageNew: !this.state.stageNew})}>
+                <Text style={styles.buttonText}>
+                    {this.state.stageNew ? 'Já possui conta?' : 'Ainda não possui conta'}
+                </Text>
+                </TouchableOpacity>
             </ImageBackground>
         )
     }
