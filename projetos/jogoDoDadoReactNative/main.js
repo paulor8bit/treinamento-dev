@@ -76,19 +76,11 @@ const styles = StyleSheet.create ({
         fontSize: 70, 
         marginBottom: 10
     }, 
-    subtitle: {
-        fontFamily: commonStyles.fontFamily, 
-        color: '#FFF', 
-        fontSize: 20
-    },
     input: {
         marginTop: 10,
         backgroundColor: '#FFF',
         padding: Platform.OS == 'ios' ? 15 : 10,
-        color: '#000',
-        textAlign: 'center', 
-        marginBottom: 10
-        
+        color: '#000'
     }, 
     formContainer: {
         backgroundColor: 'rgba(0, 0, 0, 0.8)',
