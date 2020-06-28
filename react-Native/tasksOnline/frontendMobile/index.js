@@ -1,5 +1,5 @@
 import { registerRootComponent } from 'expo';
 
-import Auth from './src/screens/Auth';
+import Navigator from './src/Navigator';
 
-registerRootComponent(Auth);
+registerRootComponent(Navigator);
