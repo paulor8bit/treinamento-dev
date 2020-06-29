@@ -19,8 +19,10 @@ import { server, showError, showSuccess } from '../common'
 
 const initialState = {
     name: '',
-    email: '',
-    password: '',
+    email: 'thunder.momon@gmail.com',
+    password: '123456',
+    // email: '',
+    // password: '',
     confirmPassword: '',
     stageNew: false
 }
@@ -38,7 +40,7 @@ export default class Auth extends Component {
             this.signin()
         }
     }
-
+    //Chama o backed
     signup = async () => {
         try {
             await axios.post(`${server}/signup`, {
@@ -54,7 +56,7 @@ export default class Auth extends Component {
             showError(e)
         }
     }
-
+    //chama o backend
     signin = async () => {
         try {
             const res = await axios.post(`${server}/signin`, {
