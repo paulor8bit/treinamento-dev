@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {ImageBackground, Text, StyleSheet, Alert,
-        View,  TouchableOpacity} from 'react-native'
+        View, TextInput, TouchableOpacity, Platform} from 'react-native'
 import backgroundImage from '../../assets/imgs/login.jpg'
 import commonStyles from '../commonStyles'
 import AuthInput from '../components/AuthInput'
@@ -100,7 +100,7 @@ const styles = StyleSheet.create ({
     input: {
         marginTop: 10,
         backgroundColor: '#FFF',
-        padding: 15,
+        padding: Platform.OS == 'ios' ? 15 : 10,
         color: '#000',
         textAlign: 'center', 
         marginBottom: 10
