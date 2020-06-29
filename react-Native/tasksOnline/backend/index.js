@@ -10,7 +10,6 @@ consign()
     .then('./config/routes.js')
     .into(app)
 
-
 app.db = db
 
 app.listen(3000, () => {
