@@ -9,7 +9,7 @@ import {
 } from 'react-native'
 
 import axios from 'axios'
-import { AsyncStorage } from 'react-native';
+import { AsyncStorage } from 'react-native'
 
 import backgroundImage from '../../assets/imgs/login.jpg'
 import commonStyles from '../commonStyles'
@@ -19,10 +19,10 @@ import { server, showError, showSuccess } from '../common'
 
 const initialState = {
     name: '',
-    email: 'thunder.momon@gmail.com',
-    password: '123456',
-    // email: '',
-    // password: '',
+// email: 'thunder.momon@gmail.com',
+//     password: '',    
+    email: '',
+    password: '',
     confirmPassword: '',
     stageNew: false
 }
