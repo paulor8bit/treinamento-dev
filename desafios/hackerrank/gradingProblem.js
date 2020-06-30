@@ -1,16 +1,13 @@
 //Alunos de classificação
 //https://www.hackerrank.com/challenges/grading/problem
 
-// Aluna  recebeu um e o próximo múltiplo de  de  é . Desde a, a nota do aluno é arredondada para .
-// Aluna  recebeu um e o próximo múltiplo de  de  é . Desde a, a nota não será modificada e a nota final do aluno será .
-// Aluna  recebeu um e o próximo múltiplo de  de  é . Desde a, a nota do aluno será arredondada para .
-// Aluna  recebeu uma nota abaixo , para que a nota não seja modificada e a nota final do aluno seja .
+
 
 function gradingStudents(grades) {
     let transformaInteiro10 = 0
     let numeros = []
     grades.forEach( n => {
-        if( n < 38 ) { numeros.push(n)}
+        if( n < 38 ) { numeros.push(n)} //Em alguns problemas é console.log
         else if( n > 37 && n % 5 == 0) {
             numeros.push(n)
         } else { 
