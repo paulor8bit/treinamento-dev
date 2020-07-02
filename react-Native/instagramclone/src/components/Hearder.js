@@ -9,7 +9,7 @@ class Header extends Component {
             <View style={styles.container}>
                 <View style={styles.rowContainer}>
                     <Image source={icon} style={styles.image}/>
-                    <Text style={styles.title}> Lambe Lambe</Text>
+                    <Text style={styles.title}>Instagrinho</Text>
                 </View>
             </View>
         )
@@ -18,8 +18,11 @@ class Header extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: Platform.OS === 'ios' ? 20 : 0,
-        padding: 10, 
+        marginTop: 20,
+        padding: 40, 
+        alignItems: 'center',
+               
+        height: 50,
         borderBottomWidth: 1
         
         // boderColor: '#BBB'
@@ -29,14 +32,15 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     }, 
     image: {
-        height: 30, 
-        width: 30, 
+        height: 40, 
+        width: 40, 
         resizeMode: 'contain'
     }, title: {
         color: '#000', 
-        
-        height: 30,
+        alignItems: 'center',
+        height: 40,
         fontSize: 28
+
     }
 })
 
