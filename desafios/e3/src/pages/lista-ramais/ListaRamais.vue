@@ -24,25 +24,25 @@
       </th>
       <th>
       {{movie.telefoneum}}
-      <input v-if='editFormMode.includes(key)' type="text" v-model='editingTelefoneum[key]' @keyup.enter='editTelefoneum(key)' class="form-control">
+      <input v-if='editFormMode.includes(key)' type="number" v-model='editingTelefoneum[key]' @keyup.enter='editTelefoneum(key)' class="form-control">
       </th>
       <th>
       {{movie.telefonedois}}
-      <input v-if='editFormMode.includes(key)' type="text" v-model='editingTelefonedois[key]' @keyup.enter='editTelefonedois(key)' class="form-control">
+      <input v-if='editFormMode.includes(key)' type="number" v-model='editingTelefonedois[key]' @keyup.enter='editTelefonedois(key)' class="form-control">
       </th>
       <th>
       {{movie.email}}
-      <input v-if='editFormMode.includes(key)' type="text" v-model='editingEmail[key]' @keyup.enter='editEmail(key)' class="form-control">
+      <input v-if='editFormMode.includes(key)' type="email" v-model='editingEmail[key]' @keyup.enter='editEmail(key)' class="form-control">
       <th>
-      <button class="btn btn-xs btn-primary" @click='editFormMode.push(key);'>Edit</button>
-      <button class="btn btn-xs btn-danger" @click='deleteMovie(key);'>Delete</button>
+      <button class="btn btn-xs btn-primary" @click='editFormMode.push(key);'>Editar</button>
+      <button class="btn btn-xs btn-danger" @click='deleteMovie(key);'>Deletar</button>
 
       </th>
     </tr>
     </tbody>
 </table>
-     <div class="card">
-    <div class="card-header">Add Book</div>
+     <div class="row">
+    <div class="card-header">Adcione</div>
       <div class="card-body">
         <form id="form"
               class="form-inline"
@@ -66,15 +66,15 @@
           <div class="form-group mb-2">
             <label for="telefoneum" class="sr-only">Telefone 1</label>
             <input id="telefoneum"
-                  type="text"
+                  type="number"
                   class="form-control"
                   placeholder="Telefone 1"
                   v-model="telefoneum" />
           </div>
-                    <div class="form-group mb-2">
+          <div class="form-group mx-sm-3 mb-2">
             <label for="telefonedois" class="sr-only">Telefone 2</label>
             <input id="telefonedois"
-                  type="text"
+                  type="number"
                   class="form-control"
                   placeholder="Telefone 2"
                   v-model="telefonedois" />
@@ -82,12 +82,13 @@
                     <div class="form-group mb-2">
             <label for="email" class="sr-only">Email</label>
             <input id="email"
-                  type="text"
+                  type="email"
                   class="form-control"
                   placeholder="Email"
                   v-model="email" />
           </div>
-          <button class="btn btn-primary mx-sm-3 mb-2">Add</button>
+          <button type="submit" class="btn btn-primary mx-sm-3 mb-2">Adcionar</button>
+          <b-button type="reset" class="btn btn-danger mx-sm-3 mb-2">Cancelar</b-button>
        </form>
       </div>
     </div>

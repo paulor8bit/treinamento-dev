@@ -12,17 +12,6 @@ const routes = [
     },
     component: () => import(/* webpackChunkName: "lista-ramais" */
       '../pages/lista-ramais/ListaRamais')
-  },
-  {
-    path: '/login',
-    name: 'Login',
-    meta: {
-      icon: 'Login'
-    },
-    // route level code-splitting
-    // this generates a separate chunk (login.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "login" */ '../pages/login/Login')
   }
 ]
 
@@ -33,7 +22,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  document.title = `${to.meta.title} - Expenses`
+  document.title = `${to.meta.title} - Desafio`
 
   if (!window.uid && to.name !== 'lista-ramais') {
     next({ name: 'lista-ramais' })
