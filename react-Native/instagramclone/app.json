@@ -1,12 +1,4 @@
 {
-  "name": "instagramclone",
-  "displayName": "instagramclone",
-  "expo": {
-    "name": "instagramclone",
-    "slug": "instagramclone",
-    "version": "1.0.0",
-    "assetBundlePatterns": [
-      "**/*"
-    ]
-  }
+  "name": "lambe",
+  "displayName": "lambe"
 }
