@@ -13,7 +13,7 @@
 // If you're really stuck, unlock solutions in the Solutions tab
 
 function divisibleByFive(n) {
-	return n % 5 ==0 
+	return n % 5 ==0 ? true : false 
 }
 
 console.log(divisibleByFive(37))
