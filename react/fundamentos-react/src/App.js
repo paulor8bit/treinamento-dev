@@ -1,4 +1,5 @@
 import React from 'react'
+import Aleatorio from './components/basicos/Aleatorio'
 import Primeiro from './components/basicos/Primeiro'
 import ComParametro from './components/basicos/ComParametro'
 
@@ -14,6 +15,7 @@ export default props => {
         aluno="Paulo" nota={10}/>
         <ComParametro
         aluno="João" nota={5}/>  
+        <Aleatorio min={1} max={6} />
         </>
     )
 }
