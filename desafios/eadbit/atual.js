@@ -1,19 +1,20 @@
-// Check if an IntegerisDivisibleByFive
-// Create a function that returns true if an integer is evenly divisible by 5, and false otherwise.
+// Return the Last Element in an Array
+// Create a function that accepts an array and returns the last item in the array.
 
 // Examples
-// divisibleByFive(5) ➞ true
+// getLastItem([1, 2, 3]) ➞ 3
 
-// divisibleByFive(-55) ➞ true
+// getLastItem(["cat", "dog", "duck"]) ➞ "duck"
 
-// divisibleByFive(37) ➞ false
+// getLastItem([true, false, true]) ➞ true
 // Notes
 // Don't forget to return the result.
 // If you get stuck on a challenge, find help in the Resources tab.
-// If you're really stuck, unlock solutions in the Solutions tab
+// If you're really stuck, unlock solutions in the Solutions tab.
 
-function divisibleByFive(n) {
-	return n % 5 ==0 
+
+function getLastItem(arr) {
+	return arr[arr.length-1]
 }
 
-console.log(divisibleByFive(37))
+console.log(getLastItem(["cat", "dog", "duck"]))
