@@ -13,6 +13,8 @@ SCRIPT
 
 Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/bionic64"
+  #rodando um sctipt (legal rodar partir do github)
+  #  config.vm.provision "shell", path: "https://example.com/provisioner.sh"
 
   #nova "VM" para o BD
   config.vm.define "mysqldb" do |mysql|
