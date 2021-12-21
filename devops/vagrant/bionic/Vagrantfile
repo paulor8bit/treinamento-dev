@@ -13,26 +13,37 @@ SCRIPT
 
 Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/bionic64"
-  # redirecionar porta, nesse exemplo a máquina virtual server web 80 
-  config.vm.network "forwarded_port", guest: 80, host:8080 
-  #config.vm.network "private_network", ip: "192.168.1.1"
-  #config.vm.network "private_network", type: "dhcp"
-  #Com brigde pegando DHCP
-  #config.vm.network "public_network"
-  config.vm.network "public_network", ip:"192.168.1.11"
-  
-  #Um exemplo de comando echo para virtual
-  config.vm.provision "shell", inline: "echo Hello, World"
-  #Script para enviar key pub do ssh 
-  config.vm.provision "shell", inline: "cat /configs/id_bionic.pub >> .ssh/authorized_keys"
-  # instalar pacotes, ver também que ta usando variável de script
-  config.vm.provision "shell", inline: $script_mysql
-  #colocar nova config alterada no windows para virtual
-  config.vm.provision "shell", inline: "cat /configs/mysqld.cnf > /etc/mysql/mysql.conf.d/mysqld.cnf/"
-  config.vm.provision "shell", inline: "service mysql restart"
-  
-  #criar pasta personalizada compartilhada entre as máquinas
-  config.vm.synced_folder "./configs", "/configs"
-  #desabilita pasta compartilhada, a do exemplo é a padrão
-  config.vm.synced_folder ".", "/vagrant", disabled: true
+
+  #nova "VM" para o BD
+  config.vm.define "mysqldb" do |mysql|
+    # redirecionar porta, nesse exemplo a máquina virtual server web 80 
+    # a principio fora do mysql fica assim: config.vm.network "forwarded_port", guest: 80, host:8080 
+    mysql.vm.network "forwarded_port", guest: 80, host:8080 
+    #mysql.vm.network "private_network", ip: "192.168.1.1"
+    #mysql.vm.network "private_network", type: "dhcp"
+    #Com brigde pegando DHCP
+    #mysql.vm.network "public_network"
+    mysql.vm.network "public_network", ip:"192.168.1.11"
+    
+    #Um exemplo de comando echo para virtual
+    mysql.vm.provision "shell", inline: "echo Hello, World"
+    #Script para enviar key pub do ssh 
+    mysql.vm.provision "shell", inline: "cat /configs/id_bionic.pub >> .ssh/authorized_keys"
+    # instalar pacotes, ver também que ta usando variável de script
+    mysql.vm.provision "shell", inline: $script_mysql
+    #colocar nova config alterada no windows para virtual
+    mysql.vm.provision "shell", inline: "cat /configs/mysqld.cnf > /etc/mysql/mysql.conf.d/mysqld.cnf/"
+    mysql.vm.provision "shell", inline: "service mysql restart"
+    
+    #criar pasta personalizada compartilhada entre as máquinas
+    mysql.vm.synced_folder "./configs", "/configs"
+    #desabilita pasta compartilhada, a do exemplo é a padrão
+    mysql .vm.synced_folder ".", "/vagrant", disabled: true
+  end
+  #segunda maquina virtual para server php  
+    config.vm.define "phpweb" do |phpweb|
+      phpweb.vm.network "forwarded_port", guest: 80, host:8080 
+      phpweb+.vm.network "public_network", ip:"192.168.1.12"
+    end
+
 end
