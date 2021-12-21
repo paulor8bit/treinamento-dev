@@ -1,0 +1,157 @@
+## em MongoCompass acessar mongodb://IP
+
+db.createCollection('estados') 
+db.estados.drop() #deletar coleção
+use NOME #muda para banco de dados
+
+show dbs  ##Mostra bancos de dados
+show collections  
+db.help()
+
+-----
+db.estados.insert({nome: "Acre", sigla: "AC", regiao: "Norte"})
+db.estados.save({nome: "Alagoas", sigla: "AL", regiao: "Nordeste", populacao: 3222000})
+db.estados.save({nome: "Rio de Janeiro", sigla: "RJ", regiao: "Sudeste", cidades:[{nome: "Niteroi", area: 133.9, populacao: 487562}]})
+db.estados.insert({
+    nome: "São Paulo",
+    sigla: "SP",
+    regiao: "Sudeste",
+    cidades: [{
+        _id: ObjectId(),
+        nome: "Campinas",
+        area: 795.7,
+        prefeito: "Jonas Donizette",
+        populacao: 1081000
+    }, {
+        _id: ObjectId(),
+        nome: "Garulhos",
+        populacao: 1325000
+    }, {
+        _id: ObjectId(),
+        nome: "Sorocaba",
+        distanciaCapital: 87,
+        populacao: 644919
+    }]
+})
+
+db.estados.find() #ver objeto
+db.estados.find().pretty() #ver objeto
+db.estados.findOne({sigla: "AL"})
+db.estados.find({sigla: "AL"})
+db.estados.find({$or: [{sigla: "AL"}, {sigla: "SP"}]}).pretty()
+db.estados.find({populacao: {$exists: true}}) #mostra apenas se tem 
+db.estados.find().skip(1).limit(2)
+db.estados.count() ##Mostra a quantidade 
+db.estados.find({sigla: "AL"}, {nome: 1, sigla:1}) #mostra apenas Nome e Sigla
+db.estados.find({sigla: "SP"}, {"cidades.nome": 1, _id: 0})
+db.estados.find({populacao: {$exists: true}}, {_id: 0, nome: 1})
+#### o um é usado como true para mostrar e 0 false
+db.estados.aggregate([
+    {$project: {nome: 1, "cidades.nome":1, _id: 0}}
+])
+
+
+db.estados.aggregate([
+    {$project: {populacao: {$sum: "$cidades.populacao"}, sigla: 1, _id:0 }}
+])
+
+db.estados.aggregate([
+    {$project: {populacao: {$sum: "$cidades.populacao"}, sigla: 1, _id:0 }},  
+    {$group: {_id: null, populacaoTotal: {$sum: "$populacao" }}}
+])
+
+db.estados.aggregate([
+    { $project: {populacao: {$sum: "$cidades.populacao"}, sigla: 1, _id: 0} },
+    { $group: {_id: null, populacaoTotal: {$sum: "$populacao" }} },
+    { $project: { _id: 0, populacaoTotal: 1 } },
+])
+
+db.estados.aggregate([
+    { $project: {populacao: {$sum: "$cidades.populacao"}, sigla: 1, _id: 0} },
+    { $group: {_id: null, populacaoTotal: {$sum: "$populacao" }} },
+    { $project: { _id: 0, populacaoTotal: 1 } },
+])
+
+db.estados.aggregate([
+    { $match: {"cidades.nome": "Sorocaba"}},
+    { $unwind: "$cidades"},
+]).pretty() 
+##Mostar cada cidade com seu rescpetivo estado com mesmo de Sorocaba
+
+db.estados.aggregate([
+    { $match: {"cidades.nome": "Sorocaba"}},
+    { $unwind: "$cidades"},
+    {$match: {"cidades.nome": "Sorocaba"}},
+    {$project: {_id: "$cidades._id"}}
+]).pretty() 
+
+db.estados.update({sigla: "SP"},{$set: {populacao: 45340000}})
+##ADD populacao São Paulo
+
+db.estados.update({sigla: "AL"},{$set: {cidades: [{nome: "Maceio"}]}})
+db.estados.update({sigla: "AL"},{$set: {cidades: [{nome: "Maceio", populacao: 456546546}]}})
+
+db.estados.update(
+    {sigla: "SP"},
+    {$push: {cidades: {nome: "Santos", populacao: 433966}}}
+)
+##Quando já existe cidades para add 
+
+db.estados.update( {sigla: "SP", "cidades.nome": "Santos" }, {$set: {"cidades.$._id": ObjectId()}})
+## incluir _id
+
+---REMOVE
+
+db.estados.count()
+
+db.estados.remove({sigla: "AC"})
+db.estados.count()
+db.estados.find()
+
+db.estados.remove({populacao: {$exists: true}}, 1)
+db.estados.count()
+db.estados.find()
+
+db.estados.update({sigla: "RJ"}, {$set: {populacao: 16720000}})
+
+db.estados.remove({populacao: {$lt: 20000000}})
+#remove menor valor de populacao
+db.estados.find()
+
+---INSERIR EMPRESAS
+
+db.empresas.insert({
+    nome: "Bradesco",
+    estadoID: ObjectId("5e8e19c5e445d1c6aec5c029")
+})
+##Inserir  empresa Bradesco ao estadoID SP
+
+db.empresas.find().pretty()
+
+db.empresas.insert({
+    nome: "Vale",
+    cidadeID: ObjectId("5e8e19c5e445d1c6aec5c028")
+})
+db.estados.insert({nome: "Rio de Janeiro", sigla: "RJ", regiao: "Sudeste", cidades:[{_id: Object(), nome: "Niteroi", area: 133.9, populacao: 487562}]})
+
+
+-- LOOKUP
+
+db.empresas.aggregate([
+    {$match: {nome: "Bradesco"}},
+    {$lookup: {
+        from: "estados",
+        localField: "estadoId",
+        foreignField: "_id",
+        as: "estado"
+    }}]).pretty()
+
+
+db.empresas.aggregate([
+    {$match: {nome: "Vale"}},
+    {$lookup: {
+        from: "estados",
+        localField: "cidadeId",
+        foreignField: "cidades._id",
+        as: "estado"
+    }}]).pretty()

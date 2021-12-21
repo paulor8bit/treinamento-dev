@@ -1,0 +1,5 @@
+create table IF NOT EXISTS teste (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY
+); 
+
+DROP table IF EXISTS teste;
