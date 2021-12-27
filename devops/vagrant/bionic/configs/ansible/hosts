@@ -1,0 +1,8 @@
+[mysqlserver]
+192.168.1.13
+
+[mysqlserver:vars]
+ansible_user=vagrant
+ansible_ssh_private_key_file=/home/vagrant/id_bionic
+ansible_python_interpreter=/usr/bin/python3
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
