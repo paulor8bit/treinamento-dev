@@ -13,9 +13,9 @@ apt-get install -y ansible
 SCRIPT
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "ubuntu/bionic64"
-  # config.vm.synced_folder ".", "/vagrant", disabled: true
   ##config global para todas VMs
+  config.vm.box = "ubuntu/bionic64"
+  
 
   #Docker default
     config.vm.define "dockerdefault" do |dockerdefault|
