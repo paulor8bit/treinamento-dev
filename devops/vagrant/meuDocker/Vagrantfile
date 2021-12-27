@@ -51,7 +51,7 @@ Vagrant.configure("2") do |config|
     
   #   #importando a chave privada (o cliente)
   #   ansible.vm.provision "shell", inline: "cp /vagrant/id_bionic >> /home/vagrant && \
-  #                                         chmod 600 /home/vagrant/id_bionic"
+  #                                         chmod 600 /home/vagrant/id_bionic && chowm vagrant:vagrant id_bionic"
 
   #   ansible.vm.provision "shell", inline: $script_ansible
 
