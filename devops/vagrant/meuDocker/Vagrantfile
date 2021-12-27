@@ -1,0 +1,62 @@
+#vagrantfile
+#criando uma máquina chamada bionic
+#Ver os docs no site
+#depois mandar vagrant up
+
+# script para as variáveis
+$script_ansible = <<-SCRIPT
+apt-get update && \
+apt-get install -y software-properties-common && \ 
+add-apt-repository --yes --update ppa:ansible/ansible && \
+apt-get install -y ansible
+
+SCRIPT
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/bionic64"
+  # config.vm.synced_folder ".", "/vagrant", disabled: true
+  ##config global para todas VMs
+
+  #Docker default
+    config.vm.define "dockerdefault" do |dockerdefault|
+      dockerdefault.vm.provider "virtualbox" do |vb|
+      vb.name = "dockerDefault_vm"
+      end #nome
+      dockerdefault.vm.provision "shell", inline: "apt-get update && apt-get install -y docker.io"
+    
+  end #Docker Defaut
+
+  #Docker Remota
+  config.vm.define "dockerremota" do |dockerremota|
+    dockerremota.vm.provider "virtualbox" do |vb|
+      vb.name = "dockeRemota_vm"
+    end #nome
+      dockerremota.vm.provision "shell", inline: "apt-get update && apt-get install -y docker.io"
+      #No hospedeiro ssh-keygen -t rsa
+      dockerremota.vm.provision "shell", inline: "cat /configs/id_rsa.pub >> .ssh/authorized_keys"
+      #No hospedeiro ssh -i- .vagrant/machines/default/virtualbox/private_key vagrant@192.168.1.77.77
+      dockerremota.vm.network "private_network", ip: "192.168.77.77"
+      dockerremota.vm.network "public_network"
+    end #Dcoker Remota
+
+  #as duas VM para teste do ansible
+  # config.vm.define "mysqlserver" do |mysqlserver|
+  #   mysqlserver.vm.network "public_network", ip:"192.168.1.13"
+  #   mysqlserver.vm.provision "shell", inline: "cat /vagrant/configs/id_bionic.pub >> .ssh/authorized_keys"
+
+  # end
+  # config.vm.define "ansible" do |ansible|
+  #   #esta maquina so precisa ser feita caso não tenha ubuntu como hospedeiro
+  #   ansible.vm.network "public_network", ip:"192.168.1.14"
+    
+  #   #importando a chave privada (o cliente)
+  #   ansible.vm.provision "shell", inline: "cp /vagrant/id_bionic >> /home/vagrant && \
+  #                                         chmod 600 /home/vagrant/id_bionic"
+
+  #   ansible.vm.provision "shell", inline: $script_ansible
+
+  #   ansible.vm.provision "shell", inline: "ansible-playbook -i /vagrant/configs/ansible/hosts \
+  #                                           /vagrant/configs/ansible/playbook.yml"
+  # end
+
+  end
