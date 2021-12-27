@@ -109,4 +109,11 @@ Vagrant.configure("2") do |config|
       # end
   end
 
+  #Exemplo docker para Windows
+  config.vm.define "dockerhost" do |dockerhost|
+      dockerhost.vm.provider "virtualbox" do |vb|
+      vb.name = "dockerhost_vm"
+    
+  end
+  dockerhost.vm.provision "shell", inline: "apt-get update && apt-get install -y docker.io"
 end
