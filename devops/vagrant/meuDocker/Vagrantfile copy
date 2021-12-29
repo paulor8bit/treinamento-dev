@@ -4,14 +4,6 @@
 #depois mandar vagrant up
 
 # script para as variáveis
-$script_ansible = <<-SCRIPT
-
-apt update && \
-apt install -y software-properties-common && \
-add-apt-repository --yes --update ppa:ansible/ansible && \
-apt install -y ansible
-
-SCRIPT
 
 Vagrant.configure("2") do |config|
   ##config global para todas VMs
@@ -52,6 +44,19 @@ Vagrant.configure("2") do |config|
     #No hospedeiro ssh -i- .vagrant/machines/default/virtualbox/private_key vagrant@192.168.1.77.78
 
   end #VM Host Test
+
+    #VM Host Test2
+    config.vm.define "hosttest2" do |hosttest2|
+      hosttest2.vm.network "public_network"
+      hosttest2.vm.network "private_network", ip: "192.168.77.78"
+      hosttest2.vm.provider "virtualbox" do |vb|
+        vb.name = "hostTest2_VM"
+      end #nome
+      hosttest2.vm.provision "shell", inline: "cat /vagrant/configs/id_rsa.pub >> .ssh/authorized_keys"
+      #No hospedeiro ssh -i- .vagrant/machines/default/virtualbox/private_key vagrant@192.168.1.77.78
+  
+    end #VM Host Test
+  
 
   #Ansible
   config.vm.define "ansible" do |ansible|
