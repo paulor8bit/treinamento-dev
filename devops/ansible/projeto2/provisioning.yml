@@ -1,0 +1,9 @@
+---
+- hosts: database
+  roles:
+    - mysql
+
+- hosts: wordpress
+  roles:
+    # - websever ##poderia ficar aqui em vez de criar a pasta meta
+    - wordpress

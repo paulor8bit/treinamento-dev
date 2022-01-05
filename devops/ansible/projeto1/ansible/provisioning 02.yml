@@ -1,10 +1,9 @@
 --- 
-  #Instalando varios pacotes com um comando so
-- hosts: all
-  handlers:
-    - name: restart apache #para o notify
-      service:
-        name: apache2
+- hosts: bancodedados
+  handlers: 
+    - name: restart mysql
+      service: 
+        name: mysql
         state: restarted
       become: yes
   tasks: 
@@ -14,15 +13,9 @@
        state: latest
       become: yes #equivalente ao sudo
       with_items:
-        - php
-        - apache2
-        - libapache2-mod-php
-        - php-gd
-        - php8.1-ssh2
-        - php-mcrypt
         - mysql-server-5.7
         - python-mysqldb
-        - php-mysql
+
         
     - name: 'Criando o banco'
       mysql_db:
@@ -31,6 +24,7 @@
          state: present #criar um bando de dados para deletar absent
 
 # caso de erro no sql
+#para fazer um script mysql < thefile 
 # $ sudo mysql -u root # I had to use "sudo" since is new installation
 
 # mysql> USE mysql;
@@ -51,6 +45,13 @@
         password: 12345
         priv: 'wordpress_db.*:ALL'
         state: present
+        host: "{{item}}"
+      with_items:
+        - 'localhost'
+        - '127.0.0.1'
+        - '192.168.0.71'
+      notify: 
+        -restart mysql
 #para verificar user
 # sudo mysql -u root
 # show databases;
@@ -59,20 +60,45 @@
 # $ mysql -u wordpress_user -p
 # show databases; 
 
-#Caso não funcione posteriormente o melhor a fazer é comentar aqui
-    - name: 'Baixa o Wordpress'
-      get_url:
-        url: https://wordpress.org/latest.tar.gz
-        dest: /vagrant/ansible/latest.tar.gz #por algum motivo so funciounou de inicio mandando para /vagrant/ansible no mesmo local de console
-        mode: 0440 #informa as permissões ao arquivo baixado.
-   #Caso não funcione posteriormente o melhor a fazer é comentar aqui
-    - name: 'Descompacta o wordpress'
-      unarchive:
-        src: /vagrant/ansible/latest.tar.gz
-        dest: /var/www/
-        remote_src: yes
+########## Wordpress
+
+- hosts: wordprees
+  handlers:
+    - name: restart apache #para o notify
+      service:
+        name: apache2
+        state: restarted
       become: yes
-#Caso não funcione posteriormente o melhor a fazer é comentar aqui
+  tasks: 
+    - name: 'instala Pacotes2'
+      apt:
+       name: "{{ item }}"
+       state: latest
+      become: yes #equivalente ao sudo
+      with_items:
+        - php
+        - apache2
+        - libapache2-mod-php
+        - php-gd
+        - php-ssh2
+        - php5-mcrypt
+        - php-mysql
+        
+
+# #Caso não funcione posteriormente o melhor a fazer é comentar aqui
+#     - name: 'Baixa o Wordpress'
+#       get_url:
+#         url: https://wordpress.org/latest.tar.gz
+#         dest: /vagrant/ansible/latest.tar.gz #por algum motivo so funciounou de inicio mandando para /vagrant/ansible no mesmo local de console
+#         mode: 0440 #informa as permissões ao arquivo baixado.
+#    #Caso não funcione posteriormente o melhor a fazer é comentar aqui
+#     - name: 'Descompacta o wordpress'
+#       unarchive:
+#         src: /vagrant/ansible/latest.tar.gz
+#         dest: /var/www/
+#         remote_src: yes
+#       become: yes
+# #Caso não funcione posteriormente o melhor a fazer é comentar aqui
 
     - copy:
         src: '/var/www/wordpress/wp-config-sample.php'
@@ -90,6 +116,7 @@
         - { regex: 'database_name_here', value: 'wordpress_db'}
         - { regex: 'username_here', value: 'wordpress_user'}
         - { regex: 'password_here', value: '12345'}
+        - { regex: 'localhost', value: '192.168.0.71'}
       become: yes
 
     - name: 'Configura Apache para servir o Wordpress'

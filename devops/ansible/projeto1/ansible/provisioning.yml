@@ -1,0 +1,128 @@
+--- 
+- hosts: bancodedados
+  handlers: 
+    - name: restart mysql
+      service: 
+        name: mysql
+        state: restarted
+      become: yes
+  tasks: 
+    - name: 'instala Pacotes'
+      apt:
+       name: "{{ item }}"
+       state: latest
+      become: yes #equivalente ao sudo
+      with_items:
+        - mysql-server-5.7
+        - python-mysqldb
+
+        
+    - name: 'Criando o banco'
+      mysql_db:
+         name: "{{ wp_db_name }}" #nome do banco
+         login_user: root
+         state: present #criar um bando de dados para deletar absent
+
+# caso de erro no sql
+#para fazer um script mysql < thefile 
+# $ sudo mysql -u root # I had to use "sudo" since is new installation
+
+# mysql> USE mysql;
+# mysql> SELECT User, Host, plugin FROM mysql.user;
+# $ sudo mysql -u root # I had to use "sudo" since is new installation
+
+# mysql> USE mysql;
+# mysql> UPDATE user SET plugin='mysql_native_password' WHERE User='root';
+# mysql> FLUSH PRIVILEGES;
+# mysql> exit;
+
+# $ sudo service mysql restart
+
+    - name: 'Cria usuario no MySQL'
+      mysql_user:
+        login_user: root
+        name: "{{wp_username}}"
+        password: 12345
+        priv: "{{ wp_db_name }}.*:ALL"
+        state: present
+        host: "{{item}}"
+      with_items:
+        - 'localhost'
+        - '127.0.0.1'
+        - '192.168.0.71'
+      notify: 
+        -restart mysql
+#para verificar user
+# sudo mysql -u root
+# show databases;
+# use wordprsdess_db;
+# show tables; 
+# $ mysql -u wordsdpress_user -p
+# show databases; 
+
+########## Wordpress
+
+- hosts: wordprees
+  handlers:
+    - name: restart apache #para o notify
+      service:
+        name: apache2
+        state: restarted
+      become: yes
+  tasks: 
+    - name: 'instala Pacotes2'
+      apt:
+       name: "{{ item }}"
+       state: latest
+      become: yes #equivalente ao sudo
+      with_items:
+        - php
+        - apache2
+        - libapache2-mod-php
+        - php-gd
+        - php-ssh2
+        - php5-mcrypt
+        - php-mysql
+        
+
+# #Caso não funcione posteriormente o melhor a fazer é comentar aqui
+#     - name: 'Baixa o Wordpress'
+#       get_url:
+#         url: https://wordpress.org/latest.tar.gz
+#         dest: /vagrant/ansible/latest.tar.gz #por algum motivo so funciounou de inicio mandando para /vagrant/ansible no mesmo local de console
+#         mode: 0440 #informa as permissões ao arquivo baixado.
+#    #Caso não funcione posteriormente o melhor a fazer é comentar aqui
+#     - name: 'Descompacta o wordpress'
+#       unarchive:
+#         src: /vagrant/ansible/latest.tar.gz
+#         dest: /var/www/
+#         remote_src: yes
+#       become: yes
+# #Caso não funcione posteriormente o melhor a fazer é comentar aqui
+
+    - copy:
+        src: '/var/www/wordpress/wp-config-sample.php'
+        dest: '/var/www/wordpress/wp-config.php'
+        remote_src: yes
+      become: yes
+
+    - name: 'Configura o wp-config com as entradas do banco de dados' #Localizar e modificar
+      replace:
+        path: '/var/www/wordpress/wp-config.php'
+        regexp: "{{ item.regex }}"
+        replace: "{{ item.value }}"
+        backup: yes
+      with_items:
+        - { regex: 'database_name_here', value: "{{ wp_db_name }}"}
+        - { regex: 'username_here', value: "{{wp_username}}"}
+        - { regex: 'password_here', value: '12345'}
+        - { regex: 'localhost', value: '192.168.0.71'}
+      become: yes
+
+    - name: 'Configura Apache para servir o Wordpress'
+      copy:
+        src: '/vagrant/files/000-default.conf'
+        dest: '/etc/apache2/sites-available/000-default.conf'
+      notify:
+        - restart apache #Comando 
+      become: yes
