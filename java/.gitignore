@@ -1,0 +1,51 @@
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+#ant specific
+*/dist/
+*/build/
+
+#netbeans specific
+*/core
+*/nbproject/*
+*/!nbproject/project.properties
+*/!nbproject/project.xml
+
+#java specific
+*.class
+*.classpath
+
+
+#general swap/backup files
+*.so
+*.log
+*.out
+*~
+*.swp
+*.DS_Store
+*.lock
+*.bat
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+/ProjetoREST/target/
+/.metadata/
+
+#others
+.project
+module-info.java
+.module-info.java
+.settings
+.classpath
+/.settings/
