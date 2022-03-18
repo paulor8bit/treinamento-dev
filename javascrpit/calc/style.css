@@ -1,0 +1,43 @@
+body{
+    background-color: rgb(51, 51, 51);
+    margin: 0;
+    padding: 0;
+}
+
+h1{
+    text-align: center;
+    color:red;
+    margin-bottom: 240px;
+}
+
+.n1{
+    color: white;
+    background-color: rgb(36, 106, 129);
+    border: solid 3px blue;
+    padding: 10px;
+}
+
+.n2{
+    color: white;
+    background-color: rgb(36, 106, 129);
+    border: solid 3px blue;
+    padding: 10px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+div{
+    display: inline;
+}
+
+#soma {
+    color: white;
+    background-color: rgb(36, 106, 129);
+    border: solid 3px blue;
+    padding: 10px;
+    padding: 10px;
+}
+
+#box{
+    text-align: center;
+}
