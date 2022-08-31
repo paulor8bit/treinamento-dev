@@ -1,0 +1,16 @@
+{
+  "type": "module",
+  "name": "ip",
+  "version": "1.0.0",
+  "description": "",
+  "main": "IPLan.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ip": "^1.1.8",
+    "public-ip": "^6.0.1"
+  }
+}
