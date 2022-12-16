@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RPG de Luta Simples</title>
+</head>
+<body>
+  <h1>RPG de Luta Simples</h1>
+  <br>
+  <button onclick="atacar()">Proximo Turno</button>
+  <br><br>
+  <br><br>
+  <p id="mensagem"></p>
+  
+  
+  <script>
+    var vidaHeroi = 100;
+    var vidaVilao = 100;
+    var turno = "heroi";
+    
+    function atacar() {
+      // Gera um número aleatório entre 10 e 20
+      var dano = Math.floor(Math.random() * 11 + 10);
+      
+      if (turno == "heroi") {
+        vidaVilao -= dano;
+        document.getElementById("mensagem").innerHTML = `O herói atacou o vilão e causou ${dano} de dano. <p> Vida do herói: ${vidaHeroi}</p><p>Vida do vilão: ${vidaVilao}</p>` 
+        turno = "vilao";
+      } else if (turno == "vilao") {
+        vidaHeroi -= dano;
+        document.getElementById("mensagem").innerHTML = `O vilão atacou o herói e causou ${dano} de dano. <p> Vida do herói: ${vidaHeroi}</p><p>Vida do vilão: ${vidaVilao}</p>` 
+        turno = "heroi";
+      }
+      
+      if (vidaHeroi <= 0) {
+        document.getElementById("mensagem").innerHTML = "O vilão venceu!";
+        document.getElementById("atacar").disabled = true;
+      } else if (vidaVilao <= 0) {
+        document.getElementById("mensagem").innerHTML = "O herói venceu!";
+        document.getElementById("atacar").disabled = true;
+      }
+    }
+  </script>
+</body>
+</html>
+
+
+
+   

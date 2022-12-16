@@ -11,8 +11,8 @@ const server = http.createServer((req, res) => {
 
     req.on('end', () => {
       const formData = querystring.parse(body);
-      console.log(formData); // exibe os dados do formulário no console
-    //   console.log(formData.nome)
+      // console.log(formData); // exibe os dados do formulário no console
+      console.log(formData.nome)
       res.end('Formulário enviado com sucesso!');
     });
   } else {
