@@ -10,7 +10,7 @@ puppeteer
   })
   .then(async (browser) => {
     const page = await browser.newPage();
-       await page.goto("https://portodemaceio.com.br");
+    await page.goto("https://portodemaceio.com.br");
     await page.screenshot({ path: "porto.png" });
     await browser.close();
     console.log('oi')
