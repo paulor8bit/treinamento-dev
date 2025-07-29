@@ -22,10 +22,10 @@ puppeteer
     await buttonElement.click();
     // console.log(`Página carregada: ${page.url()}`);
     // await page.waitFor(30000);
-    
-    const conteudo = await page.$eval('#loadingresults > center', element => element.textContent);
+    await page.screenshot({ path: "blacklist.jpg" });
+    // const conteudo = await page.$eval('#loadingresults > center', element => element.textContent);
 
-    console.log(conteudo);
+    // console.log(conteudo);
   
     await browser.close();
   });
